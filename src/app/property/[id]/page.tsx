@@ -21,7 +21,7 @@ export default function PropertyPage() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/db');
+        const res = await fetch('/api/db');
         const db = await res.json();
         const found = db.properties?.find((p: any) => p.id === id);
         setProperty(found);

@@ -27,7 +27,7 @@ export default function Footer() {
           <p>
             {t('footer.rights')} 
             <a 
-              href="http://localhost:3001/login" 
+              href="/admin/login" 
               target="_blank" 
               rel="noopener noreferrer"
               style={{ opacity: 0.3, cursor: 'pointer', textDecoration: 'none', marginLeft: '10px', color: 'inherit' }}

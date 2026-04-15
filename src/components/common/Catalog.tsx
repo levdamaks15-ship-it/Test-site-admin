@@ -13,7 +13,7 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/db');
+        const res = await fetch('/api/db');
         const db = await res.json();
         setProperties(db.properties || []);
       } catch (err) {

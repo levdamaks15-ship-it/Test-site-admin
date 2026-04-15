@@ -77,7 +77,7 @@ export const addBooking = async (booking: Omit<Booking, 'id' | 'createdAt' | 'st
 
   // 2. Отправляем в RentFlow OS (Автоматика)
   try {
-    await fetch('http://localhost:3001/api/db', {
+    await fetch('/api/db', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

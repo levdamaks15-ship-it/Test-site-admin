@@ -25,7 +25,7 @@ export default function BookingPage() {
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/db');
+        const res = await fetch('/api/db');
         const db = await res.json();
         const found = db.services?.find((s: any) => s.id === id);
         setService(found);
