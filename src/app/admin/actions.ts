@@ -7,24 +7,37 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function getAiInsightAction(data: any) {
   if (!API_KEY) {
-    return "Ошибка конфигурации: API ключ не обнаружен на сервере.";
+    return "Ошибка конфигурации: API ключ не обнаружен. Пожалуйста, добавь GEMINI_API_KEY в переменные окружения Vercel.";
   }
 
   try {
-    // Используем ТОЧНОЕ НАЗВАНИЕ из твоего списка: gemini-flash-latest (без 1.5)
-    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-flash",
+      generationConfig: {
+        temperature: 0.7,
+        topP: 0.8,
+        topK: 40,
+      }
+    });
 
     const prompt = `
-      Ты — элитный бизнес-консультант.
-      Проанализируй данные: ${JSON.stringify(data)}
-      Дай 3 коротких совета по бизнесу на русском языке.
-      Используй эмодзи ✦.
+      ТЫ: Элитный бизнес-консультант по недвижимости (RentFlow AI).
+      КОНТЕКСТ: Платформа "Arenda LUX" (Казахстан).
+      ДАННЫЕ: ${JSON.stringify(data)}
+      
+      ЗАДАЧА:
+      1. Проанализируй текущую выручку и заказы.
+      2. Предложи 3 конкретные стратегии (ценообразование, маркетинг, сервис).
+      3. Стиль: Профессиональный, лаконичный, с использованием символа ✦.
+      
+      ОТВЕТ В ФОРМАТЕ MARKDOWN.
     `;
 
     const result = await model.generateContent(prompt);
-    return result.response.text();
+    const response = await result.response;
+    return response.text();
   } catch (error: any) {
-    console.error("Gemini SDK Error:", error);
-    return `Ошибка ИИ: ${error.message || "Неизвестная ошибка"}`;
+    console.error("Gemini AI Error:", error);
+    return `Ошибка RentFlow AI: ${error.message || "Не удалось связаться с сервером аналитики."}`;
   }
 }
