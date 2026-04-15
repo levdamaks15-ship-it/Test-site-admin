@@ -1,18 +1,27 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'RentFlow OS | Управление бизнесом',
-  description: 'Панель управления арендой премиальной недвижимости',
-};
+import { usePathname } from 'next/navigation';
+import Sidebar from '@/components/admin/Sidebar';
+import '../../globals.css';
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isLoginPage = pathname === '/admin/login';
+
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
+
   return (
-    <div className="admin-root">
-      {children}
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
+      <Sidebar />
+      <main style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
+        {children}
+      </main>
     </div>
   );
 }
