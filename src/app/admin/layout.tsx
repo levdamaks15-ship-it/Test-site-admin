@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Sidebar from '@/components/admin/Sidebar';
-import '../../globals.css';
+import '../globals.css';
 
 export default function AdminLayout({
   children,
