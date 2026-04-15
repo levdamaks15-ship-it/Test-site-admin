@@ -1,0 +1,227 @@
+.dashboard {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 50px;
+}
+
+.kpiCard {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpiCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-md);
+}
+
+.kpiLabel {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.kpiValue {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.kpiTrend {
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trendUp { color: #10b981; }
+.trendDown { color: #ef4444; }
+
+.bottomRes {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.chartCard {
+  background: var(--surface);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.barChart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding-top: 60px;
+}
+
+.bar {
+  flex: 1;
+  background: var(--accent-gold);
+  border-radius: 6px 6px 0 0;
+  opacity: 0.8;
+  transition: var(--transition-smooth);
+  position: relative;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.2);
+}
+
+.bar:hover {
+  opacity: 1;
+  transform: scaleX(1.1);
+  background: var(--accent-gold-dark);
+}
+
+.barLabel {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.aiInsightCard {
+  background: #ffffff;
+  border: 1px solid var(--accent-gold);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.aiInsightCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-gold);
+}
+
+.insightTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+.modalContent {
+  background: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input, .select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: #f8f9fa;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

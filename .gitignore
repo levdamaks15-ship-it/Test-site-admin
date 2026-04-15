@@ -1,0 +1,9 @@
+node_modules
+.next
+.env*.local
+dist
+.DS_Store
+*.js.map
+migrate.js
+package-lock.json
+node_modules

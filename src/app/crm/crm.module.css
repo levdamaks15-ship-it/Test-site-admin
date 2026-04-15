@@ -1,0 +1,139 @@
+.crmPage {
+  padding-top: 100px;
+  min-height: 100vh;
+  background: #f1f5f9;
+  padding-bottom: 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 32px;
+  color: var(--text-primary);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  padding: 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.statGrowth {
+  font-size: 12px;
+  color: #10b981;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.aiInsightCard {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--accent-gold);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 40px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.aiIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--accent-gold);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.aiContent h4 {
+  margin-bottom: 4px;
+  color: var(--accent-gold);
+}
+
+.tableCard {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.tableHeader {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-color);
+  background: white;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background: white;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px 24px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status_pending { background: #fef3c7; color: #92400e; }
+.status_confirmed { background: #dcfce7; color: #166534; }
+.status_completed { background: #d1fae5; color: #064e3b; }
+.status_cancelled { background: #fee2e2; color: #991b1b; }
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
