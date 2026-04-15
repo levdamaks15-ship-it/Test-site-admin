@@ -22,8 +22,8 @@ export default function LoginPage() {
   return (
     <div className={styles.container} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
       <div className={styles.card} style={{ maxWidth: '400px', width: '100%', padding: '40px', textAlign: 'center' }}>
-        <h1 className={styles.title} style={{ fontSize: '24px', marginBottom: '20px' }}>RentFlow OS</h1>
-        <p className={styles.subtitle} style={{ marginBottom: '30px' }}>Введите код доступа для управления системой</p>
+        <h1 className={styles.title} style={{ fontSize: '28px', marginBottom: '10px', color: '#B8860B', fontWeight: 'bold' }}>RentFlow OS</h1>
+        <p className={styles.subtitle} style={{ marginBottom: '30px', color: '#555' }}>Введите код доступа для управления системой</p>
         
         <form onSubmit={handleLogin}>
           <input 

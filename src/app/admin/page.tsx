@@ -142,7 +142,7 @@ export default function Dashboard() {
         <div className={styles.kpiCard}>
           <span className={styles.kpiLabel}>Всего заказов</span>
           <div className={styles.kpiValue}>{kpis.orders}</div>
-          <div className={`${styles.kpiTrend} ${styles.trendUp}`}>↑ Из базы db.json</div>
+          <div className={`${styles.kpiTrend} ${styles.trendUp}`}>↑ Из облака Supabase</div>
         </div>
         <div className={styles.kpiCard}>
           <span className={styles.kpiLabel}>Удовлетворенность</span>

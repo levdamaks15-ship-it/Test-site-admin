@@ -14,6 +14,11 @@ export async function GET() {
       }, { status: 500 });
     }
 
+    // Дополнительная проверка формата
+    if (!url.startsWith('https://')) {
+       return NextResponse.json({ error: 'URL must start with https://' }, { status: 500 });
+    }
+
     const { data: properties, error: pError } = await supabase.from('properties').select('*');
     const { data: services, error: sError } = await supabase.from('services').select('*');
     const { data: bookings, error: bError } = await supabase.from('bookings').select('*');
