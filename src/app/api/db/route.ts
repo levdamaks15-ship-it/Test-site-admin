@@ -3,6 +3,17 @@ import { supabase } from '@/lib/supabase';
 
 export async function GET() {
   try {
+    // Проверка ключей (для отладки)
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!url || !key) {
+      return NextResponse.json({ 
+        error: 'Missing Supabase environment variables',
+        debug: { hasUrl: !!url, hasKey: !!key }
+      }, { status: 500 });
+    }
+
     const { data: properties, error: pError } = await supabase.from('properties').select('*');
     const { data: services, error: sError } = await supabase.from('services').select('*');
     const { data: bookings, error: bError } = await supabase.from('bookings').select('*');
