@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../page.module.css'; // Используем существующие стили
+import styles from '../../page.module.css'; // Путь к стилям в корне app
 
 export default function LoginPage() {
   const [password, setPassword] = useState('');
