@@ -26,6 +26,7 @@ export async function GET() {
         debug_url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 15) + '...'
       }, { status: 500 });
     }
+    return NextResponse.json({
       properties: properties || [],
       services: services || [],
       bookings: bookings || []
