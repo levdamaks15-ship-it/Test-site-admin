@@ -13,7 +13,7 @@ export default function LoginPage() {
     e.preventDefault();
     if (password === '0000') {
       localStorage.setItem('rf_auth', 'true');
-      router.push('/');
+      router.push('/admin');
     } else {
       setError('Неверный пароль. Попробуйте 0000');
     }

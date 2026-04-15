@@ -3,11 +3,18 @@ import { supabase } from '@/lib/supabase';
 
 export async function GET() {
   try {
-    const { data: properties } = await supabase.from('properties').select('*');
-    const { data: services } = await supabase.from('services').select('*');
-    const { data: bookings } = await supabase.from('bookings').select('*');
+    const { data: properties, error: pError } = await supabase.from('properties').select('*');
+    const { data: services, error: sError } = await supabase.from('services').select('*');
+    const { data: bookings, error: bError } = await supabase.from('bookings').select('*');
 
-    return NextResponse.json({
+    if (pError || sError || bError) {
+      console.error('Supabase Error:', pError || sError || bError);
+      return NextResponse.json({ 
+        error: 'Supabase fetch failed', 
+        details: pError?.message || sError?.message || bError?.message,
+        debug_url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 15) + '...'
+      }, { status: 500 });
+    }
       properties: properties || [],
       services: services || [],
       bookings: bookings || []
