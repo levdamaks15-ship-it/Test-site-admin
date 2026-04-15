@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     // Проверка ключей (для отладки)
@@ -31,10 +33,19 @@ export async function GET() {
         debug_url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 15) + '...'
       }, { status: 500 });
     }
+    
+    // Маппинг данных из snake_case базы в camelCase для фронтенда
+    const formattedBookings = (bookings || []).map(b => ({
+      ...b,
+      clientName: b.client_name || b.clientName,
+      clientEmail: b.client_email || b.clientEmail,
+      serviceName: b.service_name || b.serviceName
+    }));
+
     return NextResponse.json({
       properties: properties || [],
       services: services || [],
-      bookings: bookings || []
+      bookings: formattedBookings
     }, {
       headers: {
         'Access-Control-Allow-Origin': '*',
