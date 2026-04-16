@@ -70,7 +70,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Nav Overlay */}
-      <div className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''} glass`}>
+      <div className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}>
         <nav className={styles.mobileNavLinks}>
           {menuItems.map((item) => (
             <Link 
