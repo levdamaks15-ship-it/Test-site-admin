@@ -31,11 +31,14 @@ export default function Inventory() {
     fetchItems();
   }, []);
 
-  const handleUpdatePrice = async () => {
-    if (!editingItem || !newPrice) return;
+  const handleUpdateItem = async () => {
+    if (!editingItem) return;
 
     try {
       const collection = editingItem.category === 'Недвижимость' ? 'properties' : 'services';
+      const data: any = {};
+      if (newPrice) data.price = parseInt(newPrice);
+
       const res = await fetch('/api/db', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -43,7 +46,7 @@ export default function Inventory() {
           action: 'update',
           collection,
           id: editingItem.id,
-          data: { price: parseInt(newPrice) }
+          data
         })
       });
 
@@ -53,7 +56,7 @@ export default function Inventory() {
         fetchItems();
       }
     } catch (err) {
-      alert('Ошибка при обновлении цены');
+      alert('Ошибка при обновлении актива');
     }
   };
 
@@ -83,23 +86,24 @@ export default function Inventory() {
                 </span>
               </div>
               <div className={styles.content}>
-                <div className={styles.type}>{item.category}</div>
+                <div className={styles.type}>
+                  {item.category}
+                </div>
                 <h3 className={styles.itemName}>{item.title_ru || item.name}</h3>
                 
                 {editingItem?.id === item.id && editingItem?.category === item.category ? (
-                  <div style={{ marginTop: '10px' }}>
+                   <div style={{ marginTop: '10px' }}>
                     <input 
                       type="number" 
-                      className={styles.filterInput}
-                      style={{ width: '100%', marginBottom: '8px' }}
+                      className={styles.priceInput}
                       value={newPrice}
                       onChange={(e) => setNewPrice(e.target.value)}
                       placeholder="Новая цена (₸)"
                       autoFocus
                     />
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <button className="btn btn-primary" onClick={handleUpdatePrice} style={{ flex: 1, padding: '4px' }}>✓</button>
-                      <button className="btn" onClick={() => setEditingItem(null)} style={{ flex: 1, padding: '4px' }}>✕</button>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                      <button className={styles.btnSave} onClick={handleUpdateItem} style={{ flex: 1 }}>✓ Сохранить</button>
+                      <button className={styles.btnCancel} onClick={() => setEditingItem(null)} style={{ flex: 1 }}>✕</button>
                     </div>
                   </div>
                 ) : (
@@ -111,12 +115,11 @@ export default function Inventory() {
                     <div className={styles.actions}>
                       <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>ID: {item.id}</span>
                       <button 
-                        className="btn" 
+                        className={styles.btnEdit} 
                         onClick={() => {
                           setEditingItem(item);
                           setNewPrice(item.price.toString());
                         }}
-                        style={{ padding: '6px 16px', fontSize: '13px', background: 'transparent', border: '1px solid var(--accent-primary)', color: 'var(--accent-primary)' }}
                       >
                         Изменить цену
                       </button>

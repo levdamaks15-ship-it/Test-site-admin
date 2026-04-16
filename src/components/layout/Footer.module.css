@@ -65,3 +65,17 @@
     width: 100%;
   }
 }
+
+.adminLink {
+  opacity: 0.4;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 10px;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+.adminLink:hover {
+  opacity: 1;
+  color: var(--accent-gold);
+}

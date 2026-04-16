@@ -10,7 +10,7 @@ export default function CRM() {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch('/api/db');
+      const res = await fetch('/api/db?t=' + Date.now(), { cache: 'no-store' });
       const db = await res.json();
       setBookings(db.bookings || []);
     } catch (err) {
@@ -43,7 +43,8 @@ export default function CRM() {
   };
 
   const handleRemove = async (id: string) => {
-    if (!confirm('Вы уверены, что хотите удалить эту запись?')) return;
+    // Убрали confirm временно для теста
+    console.log('HANDLE REMOVE CALLED FOR', id);
     
     try {
       const res = await fetch('/api/db', {
@@ -55,9 +56,15 @@ export default function CRM() {
           id
         })
       });
-      if (res.ok) fetchBookings();
+      
+      if (res.ok) {
+        fetchBookings();
+      } else {
+        const errData = await res.json();
+        alert('Ошибка: ' + (errData.error || 'Не удалось удалить'));
+      }
     } catch (err) {
-      alert('Ошибка при удалении');
+      alert('Ошибка соединения');
     }
   };
 
@@ -95,7 +102,7 @@ export default function CRM() {
                 <th>Услуга</th>
                 <th>Стоимость</th>
                 <th>Статус</th>
-                <th>Действия</th>
+                <th style={{ width: '320px' }}>Действия</th>
               </tr>
             </thead>
             <tbody>
@@ -120,29 +127,17 @@ export default function CRM() {
                     </span>
                   </td>
                   <td>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      {booking.status === 'pending' ? (
-                        <button 
-                          className="btn btn-primary" 
-                          onClick={() => handleUpdateStatus(booking.id, 'confirmed')}
-                          style={{ padding: '4px 12px', fontSize: '11px' }}
-                        >
-                          Подтвердить
-                        </button>
-                      ) : (
-                        <button 
-                          className="btn" 
-                          onClick={() => handleUpdateStatus(booking.id, 'pending')}
-                          style={{ padding: '4px 12px', fontSize: '11px', background: 'transparent', border: '1px solid var(--border-color)' }}
-                        >
-                          В ожидание
-                        </button>
-                      )}
+                    <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                      <button 
+                        className={booking.status === 'pending' ? styles.btnConfirm : styles.btnPending} 
+                        onClick={() => handleUpdateStatus(booking.id, booking.status === 'pending' ? 'confirmed' : 'pending')}
+                      >
+                        {booking.status === 'pending' ? 'Подтвердить' : 'В ожидание'}
+                      </button>
                       
                       <button 
-                        className="btn" 
+                        className={styles.btnDelete} 
                         onClick={() => handleRemove(booking.id)}
-                        style={{ padding: '4px 12px', fontSize: '11px', background: 'rgba(217, 83, 79, 0.1)', color: '#d9534f', border: '1px solid #d9534f' }}
                       >
                         Удалить
                       </button>

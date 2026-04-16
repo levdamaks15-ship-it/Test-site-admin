@@ -1,22 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from '@/lib/i18n';
 import styles from './SearchFilters.module.css';
 
 interface SearchFiltersProps {
   onSearch?: (filters: any) => void;
+  activeDealType?: string;
+  onTabChange?: (type: string) => void;
 }
 
-export default function SearchFilters({ onSearch }: SearchFiltersProps) {
+export default function SearchFilters({ onSearch, activeDealType = 'rent', onTabChange }: SearchFiltersProps) {
   const { t } = useTranslation();
-  const [activeType, setActiveType] = useState('rent');
-  const [selectedCategory, setSelectedCategory] = useState('apartments');
+  const [activeType, setActiveType] = useState(activeDealType);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedRooms, setSelectedRooms] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const [isMounted, setIsMounted] = useState(false);
 
-  const categories = ['Квартиры', 'Дома и виллы', 'Офисы'];
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setActiveType(activeDealType);
+  }, [activeDealType]);
 
   const toggleRoom = (num: string) => {
     setSelectedRooms(prev => 
@@ -35,20 +44,13 @@ export default function SearchFilters({ onSearch }: SearchFiltersProps) {
     }
   };
 
+  if (!isMounted) return null;
+
   return (
     <div className={`${styles.searchBlock} glass`}>
-      <div className={styles.tabs}>
-        <button 
-          className={`${styles.tab} ${activeType === 'rent' ? styles.active : ''}`}
-          onClick={() => setActiveType('rent')}
-        >
-          {t('common.rent')}
-        </button>
-        <button 
-          className={`${styles.tab} ${activeType === 'buy' ? styles.active : ''}`}
-          onClick={() => setActiveType('buy')}
-        >
-          {t('common.buy')}
+      <div className={styles.tabs} style={{ pointerEvents: 'none' }}>
+        <button className={`${styles.tab} ${styles.active}`} style={{ width: '100%', border: 'none' }}>
+          ПОИСК НЕДВИЖИМОСТИ
         </button>
       </div>
 
@@ -60,12 +62,12 @@ export default function SearchFilters({ onSearch }: SearchFiltersProps) {
               className={styles.selectHeader} 
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              {t(`common.${selectedCategory.toLowerCase()}`)}
+              {selectedCategory === 'all' ? t('common.all') : t(`common.${selectedCategory.toLowerCase()}`)}
               <span className={styles.arrow}>▼</span>
             </div>
             {isDropdownOpen && (
               <div className={styles.dropdownList}>
-                {['apartments', 'villas', 'offices'].map(cat => (
+                {['all', 'apartments', 'villas', 'offices'].map(cat => (
                   <div 
                     key={cat} 
                     className={`${styles.option} ${selectedCategory === cat ? styles.activeOption : ''}`}

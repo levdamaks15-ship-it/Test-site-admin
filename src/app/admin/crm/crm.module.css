@@ -101,3 +101,80 @@
 .active { background: rgba(16, 185, 129, 0.1); color: #059669; }
 .pending { background: rgba(197, 160, 89, 0.1); color: var(--accent-gold); }
 .completed { background: rgba(15, 23, 42, 0.05); color: var(--text-muted); }
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 280px;
+  justify-content: flex-start;
+}
+
+.btnConfirm, .btnPending {
+  width: 160px; /* Increased and fixed width to prevent text overflow jitter */
+  flex-shrink: 0;
+  padding: 10px 0;
+  text-align: center;
+  background: var(--accent-gold);
+  color: white;
+  border: none;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+}
+
+.btnConfirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+  filter: brightness(1.1);
+}
+
+.btnPending {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.btnPending:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(197, 160, 89, 0.05);
+}
+
+.btnDelete {
+  width: 100px;
+  flex-shrink: 0;
+  padding: 10px 0;
+  height: 36px;
+  text-align: center;
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnDelete:hover {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}

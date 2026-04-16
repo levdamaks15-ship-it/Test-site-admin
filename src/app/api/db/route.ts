@@ -84,7 +84,9 @@ export async function POST(request: Request) {
     } else if (action === 'update') {
       result = await supabase.from(collection).update(data).eq('id', id || data.id);
     } else if (action === 'delete') {
-      result = await supabase.from(collection).delete().eq('id', id);
+      const targetId = id || data?.id;
+      if (!targetId) throw new Error('No ID provided for deletion');
+      result = await supabase.from(collection).delete().eq('id', targetId);
     }
 
     if (result?.error) throw result.error;

@@ -7,6 +7,7 @@ import styles from '../../page.module.css'; // Путь к стилям в ко�
 export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [placeholder, setPlaceholder] = useState('Пароль');
   const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -28,9 +29,11 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <input 
             type="password" 
-            placeholder="Пароль" 
+            placeholder={placeholder} 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onFocus={() => setPlaceholder('')}
+            onBlur={() => setPlaceholder('Пароль')}
             style={{
               width: '100%',
               padding: '12px',
@@ -39,7 +42,7 @@ export default function LoginPage() {
               marginBottom: '20px',
               textAlign: 'center',
               fontSize: '18px',
-              letterSpacing: '5px'
+              letterSpacing: '1px'
             }}
           />
           {error && <p style={{ color: '#d9534f', fontSize: '14px', marginBottom: '20px' }}>{error}</p>}

@@ -15,7 +15,21 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
       try {
         const res = await fetch('/api/db');
         const db = await res.json();
-        setProperties(db.properties || []);
+        
+        // Ensure images are always an array
+        const parsedProperties = (db.properties || []).map((p: any) => {
+          let images = p.images;
+          if (typeof images === 'string') {
+            try {
+              images = JSON.parse(images);
+            } catch (e) {
+              images = [];
+            }
+          }
+          return { ...p, images: Array.isArray(images) ? images : [] };
+        });
+        
+        setProperties(parsedProperties);
       } catch (err) {
         console.error('Failed to sync with RentFlow OS DB');
       }
@@ -33,7 +47,7 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
   const filteredProperties = useMemo(() => {
     let result = properties;
 
-    // Apply Catalog level filter (tabs)
+    // Apply Catalog level filter (tabs for Categories)
     if (filter !== 'all') {
       result = result.filter(p => p.type === filter);
     }
@@ -57,7 +71,7 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
       }
       
       // Secondary category filter from search block
-      if (searchCriteria.category) {
+      if (searchCriteria.category && searchCriteria.category !== 'all') {
         const typeMap: any = {
           'apartments': 'apartment',
           'villas': 'villa',
@@ -93,11 +107,23 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
         </div>
 
         <div className={styles.grid}>
-          {filteredProperties.length > 0 ? filteredProperties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          )) : (
-            <div style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1', color: 'var(--text-muted)' }}>
-              Загрузка каталога из RentFlow OS...
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))
+          ) : (
+            <div style={{ padding: '80px 40px', textAlign: 'center', gridColumn: '1 / -1', color: 'var(--text-muted)' }}>
+              {properties.length === 0 ? (
+                <div className={styles.loadingPulse}>Синхронизация с базой данных...</div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                  <span style={{ fontSize: '48px' }}>🔍</span>
+                  <div>
+                    <h3 style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>Объектов не найдено</h3>
+                    <p>По вашему запросу в категории {searchCriteria?.type === 'buy' ? 'Продажа' : 'Аренда'} пока нет доступных вариантов.</p>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

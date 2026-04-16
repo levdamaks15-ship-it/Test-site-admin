@@ -41,6 +41,9 @@ export default function PropertyCard({ property }: { property: any }) {
         <div className={styles.imageWrapper}>
           <img src={mainImage} alt={title} className={styles.image} />
           <div className={styles.badges}>
+            <span className={`${styles.badge} ${property.deal_type === 'sale' ? styles.saleBadge : styles.rentBadge}`}>
+              {property.deal_type === 'sale' ? t('common.buy').toUpperCase() : t('common.rent').toUpperCase()}
+            </span>
             {property.featured && <span className={styles.badge}>Hot</span>}
             {property.verified && <span className={`${styles.badge} ${styles.verified}`}>✓ {t('common.verified')}</span>}
           </div>
@@ -75,7 +78,9 @@ export default function PropertyCard({ property }: { property: any }) {
               <div className={styles.price}>
                 {formatPrice(property.price)} <span>{property.currency || '₸'}</span>
               </div>
-              <span className={styles.perMonth}>{t('common.perMonth')}</span>
+              {(property.deal_type === 'rent' || !property.deal_type) && (
+                <span className={styles.perMonth}>{t('common.perMonth')}</span>
+              )}
             </div>
             <button className={styles.detailsBtn}>→</button>
           </div>

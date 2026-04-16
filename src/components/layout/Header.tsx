@@ -22,7 +22,7 @@ export default function Header() {
             <Link href="/services">{t('nav.services')}</Link>
             <Link href="/about">{t('nav.about')}</Link>
             <Link href="/contact">{t('nav.contacts')}</Link>
-            <Link href="/admin/login" style={{ opacity: 0.7, fontSize: '0.9em' }}>{t('nav.crm')}</Link>
+
           </nav>
 
           <div className={styles.actions}>

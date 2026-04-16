@@ -115,3 +115,76 @@
   padding-top: 24px;
   border-top: 1px solid var(--border-color);
 }
+
+.btnEdit {
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 2px solid var(--accent-gold);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btnEdit:hover {
+  background: var(--accent-gold);
+  color: white;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);
+}
+
+.btnSave {
+  padding: 8px 16px;
+  background: var(--accent-gold);
+  color: white;
+  border: none;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
+}
+
+.btnSave:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btnCancel {
+  padding: 8px 16px;
+  background: rgba(220, 38, 38, 0.05);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnCancel:hover {
+  background: #dc2626;
+  color: white;
+}
+
+.priceInput {
+  background: var(--surface-hover);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 12px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.priceInput:focus {
+  border-color: var(--accent-gold);
+}

@@ -28,11 +28,9 @@ export default function Footer() {
             {t('footer.rights')} 
             <a 
               href="/admin/login" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ opacity: 0.3, cursor: 'pointer', textDecoration: 'none', marginLeft: '10px', color: 'inherit' }}
+              className={styles.adminLink}
             >
-              •
+              {t('nav.crm')}
             </a>
           </p>
         </div>
