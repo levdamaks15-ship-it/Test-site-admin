@@ -175,10 +175,14 @@ a {
 
 /* Internal Artifact Cleanup */
 img[src*="next.svg"], 
-img[src*="vercel.svg"] {
+img[src*="vercel.svg"],
+#nextjs-portal,
+div[class*="nextjs-portal"],
+div[id*="nextjs-portal"] {
   display: none !important;
-  visibility: hidden;
-  opacity: 0;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 body, html {

@@ -238,24 +238,61 @@
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
   
   .sidebar {
-    order: -1;
+    order: 2; /* Move booking form after content on mobile */
+  }
+
+  .content {
+    order: 1;
   }
 }
 
 @media (max-width: 768px) {
+  .main {
+    padding-top: 90px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .location {
+    font-size: 15px;
+  }
+
   .gallery {
     grid-template-columns: 1fr;
-    height: auto;
+    height: 300px;
+    margin-bottom: 24px;
   }
   
   .sideImages {
-    display: none; /* Hide side images on very small screens to keep it clean, or could stack them */
+    display: none;
   }
   
-  .grid {
-    grid-template-columns: 1fr;
+  .specsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px 0;
+    gap: 12px;
+  }
+
+  .specBox {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .specIcon {
+    font-size: 20px;
+  }
+
+  .specVal {
+    font-size: 16px;
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
