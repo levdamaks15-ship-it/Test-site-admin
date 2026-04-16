@@ -155,16 +155,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ffffff;
-  background: white;
-  opacity: 1;
-  backdrop-filter: blur(25px);
-  z-index: 10000;
+  background-color: #ffffff !important;
+  background: white !important;
+  opacity: 1 !important;
+  z-index: 1000000 !important;
   display: flex;
   flex-direction: column;
   padding: 100px 40px 40px;
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
 }
 
 .mobileNavOpen {
@@ -214,6 +214,8 @@
 @media (max-width: 768px) {
   .header {
     height: 70px;
+    z-index: 1000000 !important; /* Dominate everything */
+    background: #ffffff !important; /* Solid header on mobile */
   }
   .inner {
     display: flex;

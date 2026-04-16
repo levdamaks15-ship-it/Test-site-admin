@@ -177,12 +177,16 @@ a {
 img[src*="next.svg"], 
 img[src*="vercel.svg"],
 #nextjs-portal,
-div[class*="nextjs-portal"],
-div[id*="nextjs-portal"] {
+#nextjs-portal-root,
+#[id*="nextjs-portal"],
+[class*="nextjs-portal"],
+#__next-prerender-indicator {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 body, html {
