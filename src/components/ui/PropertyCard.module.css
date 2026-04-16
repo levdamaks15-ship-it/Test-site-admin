@@ -210,3 +210,35 @@
   border-color: var(--accent-gold);
   color: #000;
 }
+
+@media (max-width: 768px) {
+  .imageWrapper {
+    height: 200px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 18px;
+  }
+  
+  .specsGrid {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .specItem {
+    padding: 8px 2px;
+    font-size: 11px;
+  }
+  
+  .price {
+    font-size: 20px;
+  }
+  
+  .favoriteBtn {
+    display: none;
+  }
+}

@@ -98,15 +98,129 @@
 
 @media (max-width: 1024px) {
   .nav {
-    gap: 24px;
+    display: none;
+  }
+  .container {
+    padding: 0 20px;
   }
 }
 
+.mobileToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.burgerOpen span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  background: white;
+  opacity: 1;
+  backdrop-filter: blur(25px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 40px 40px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.mobileNavOpen {
+  transform: translateX(0);
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mobileNavLink {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.mobileActions {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+}
+
+.langSwitcherMobile {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.langSwitcherMobile button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.langSwitcherMobile button.active {
+  color: var(--accent-gold);
+}
+
 @media (max-width: 768px) {
-  .inner {
-    grid-template-columns: 1fr auto; /* Logo and Actions only */
+  .header {
+    height: 70px;
   }
-  .nav {
-    display: none;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .mobileToggle {
+    display: flex;
   }
 }

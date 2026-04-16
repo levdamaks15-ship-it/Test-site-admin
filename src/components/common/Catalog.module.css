@@ -49,15 +49,47 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    margin-bottom: 32px;
+  }
+  
+  .title {
+    font-size: 26px;
+  }
+  
+  .filtersContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .filtersContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--background));
+    pointer-events: none;
+    z-index: 5;
   }
   
   .filters {
-    width: 100%;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    padding: 0 20px 8px;
     overflow-x: auto;
-    padding-bottom: 8px;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .filters::-webkit-scrollbar {
+    display: none;
   }
   
   .grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 }

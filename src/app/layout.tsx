@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/lib/i18n";
+import ContactButtons from "@/components/ui/ContactButtons";
 
 export default function RootLayout({
   children,
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           {children}
+          <ContactButtons />
         </LanguageProvider>
       </body>
     </html>

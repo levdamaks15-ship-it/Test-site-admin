@@ -93,16 +93,18 @@ export default function Catalog({ searchCriteria }: { searchCriteria?: any }) {
         <div className={styles.header}>
           <h2 className={styles.title}>{t('common.catalogTitle')}</h2>
           
-          <div className={styles.filters}>
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setFilter(cat.id)}
-                className={`${styles.filterBtn} ${filter === cat.id ? styles.active : ''}`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className={styles.filtersContainer}>
+            <div className={styles.filters}>
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setFilter(cat.id)}
+                  className={`${styles.filterBtn} ${filter === cat.id ? styles.active : ''}`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

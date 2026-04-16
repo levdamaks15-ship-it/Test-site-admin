@@ -148,3 +148,41 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-gold);
 }
+
+/* Responsive Utilities */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+  .section-padding {
+    padding: 60px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Internal Artifact Cleanup */
+img[src*="next.svg"], 
+img[src*="vercel.svg"] {
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+}
+
+body, html {
+  overflow-x: hidden !important;
+  position: relative;
+  width: 100%;
+}

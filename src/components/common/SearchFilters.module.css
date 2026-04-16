@@ -220,11 +220,39 @@
 }
 
 @media (max-width: 768px) {
+  .tabs .tab {
+    padding: 12px 0;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  
   .filtersInner {
     grid-template-columns: 1fr;
+    padding: 24px 20px 32px;
+    gap: 20px;
+  }
+  
+  .filterGroup {
+    gap: 12px;
+  }
+
+  .filterGroup label {
+    font-size: 11px;
+    min-height: auto;
+  }
+
+  .selectHeader, .roomBtn, .inputSmall, .searchBtn {
+    height: 48px;
+    font-size: 14px;
   }
   
   .searchBtn {
-    grid-column: span 1;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .roomBtns {
+    height: 48px;
   }
 }
