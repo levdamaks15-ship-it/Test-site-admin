@@ -178,7 +178,7 @@ img[src*="next.svg"],
 img[src*="vercel.svg"],
 #nextjs-portal,
 #nextjs-portal-root,
-#[id*="nextjs-portal"],
+[id*="nextjs-portal"],
 [class*="nextjs-portal"],
 #__next-prerender-indicator {
   display: none !important;
