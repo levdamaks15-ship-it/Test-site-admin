@@ -150,65 +150,7 @@
 }
 
 .mobileNav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white !important;
-  background: #ffffff !important;
-  opacity: 1 !important;
-  z-index: 2000000 !important; /* Double the dominance */
-  display: flex;
-  flex-direction: column;
-  padding: 100px 40px 40px;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: none;
-}
-
-.mobileNavOpen {
-  transform: translateX(0);
-}
-
-.mobileNavLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.mobileNavLink {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-decoration: none;
-  font-family: 'Outfit', sans-serif;
-}
-
-.mobileActions {
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-color);
-}
-
-.langSwitcherMobile {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.langSwitcherMobile button {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 8px;
-}
-
-.langSwitcherMobile button.active {
-  color: var(--accent-gold);
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -224,5 +166,77 @@
   }
   .mobileToggle {
     display: flex;
+  }
+  
+  .mobileNav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+    z-index: 2000000 !important;
+    flex-direction: column;
+    padding: 100px 40px 40px;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .mobileNavOpen {
+    transform: translateX(0);
+  }
+
+  .mobileNavLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .mobileNavLink {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .mobileActions {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .langSwitcherMobile {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .langSwitcherMobile button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobileNavHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .closeMenuBtn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--text-primary);
+    cursor: pointer;
   }
 }

@@ -18,7 +18,8 @@ export default function Header() {
   ];
 
   return (
-    <header className={`${styles.header} glass`}>
+    <>
+      <header className={`${styles.header} glass`}>
       <div className={styles.container}>
         <div className={styles.inner}>
           <div className={styles.logoContainer}>
@@ -68,29 +69,45 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Nav Overlay */}
-      <div className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}>
-        <nav className={styles.mobileNavLinks}>
-          {menuItems.map((item) => (
-            <Link 
-              key={item.name} 
-              href={item.href} 
-              className={styles.mobileNavLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <div className={styles.mobileActions}>
-            <div className={styles.langSwitcherMobile}>
-              <button onClick={() => { setLanguage('ru'); setIsMenuOpen(false); }} className={language === 'ru' ? styles.active : ''}>RU</button>
-              <span>|</span>
-              <button onClick={() => { setLanguage('kz'); setIsMenuOpen(false); }} className={language === 'kz' ? styles.active : ''}>KZ</button>
-            </div>
-          </div>
-        </nav>
-      </div>
     </header>
+
+    {/* Mobile Nav Overlay (Now physically outside the header tag to escape stacking contexts) */}
+    <div 
+      className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}
+      style={{ backgroundColor: '#ffffff', zIndex: 2147483647 }}
+    >
+      <div className={styles.mobileNavHeader}>
+        <div className={styles.logo}>
+          ARENDA<span>LUX</span>
+        </div>
+        <button 
+          className={styles.closeMenuBtn}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          ✕
+        </button>
+      </div>
+
+      <nav className={styles.mobileNavLinks}>
+        {menuItems.map((item) => (
+          <Link 
+            key={item.name} 
+            href={item.href} 
+            className={styles.mobileNavLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {item.name}
+          </Link>
+        ))}
+        <div className={styles.mobileActions}>
+          <div className={styles.langSwitcherMobile}>
+            <button onClick={() => { setLanguage('ru'); setIsMenuOpen(false); }} className={language === 'ru' ? styles.active : ''}>RU</button>
+            <span>|</span>
+            <button onClick={() => { setLanguage('kz'); setIsMenuOpen(false); }} className={language === 'kz' ? styles.active : ''}>KZ</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </>
   );
 }
